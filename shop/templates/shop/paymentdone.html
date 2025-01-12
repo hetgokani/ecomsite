@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Confirmation</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(153, 101, 21, 0.8),
+          rgba(101, 67, 33, 0.8)
+        );
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-size: cover;
+        backdrop-filter: blur(10px);
+      }
+
+      .confirmation-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 90%;
+        max-width: 600px;
+        position: relative;
+        animation: fadeIn 1.2s ease-in-out;
+      }
+
+      .tick {
+        font-size: 80px;
+        color: #ff8c00;
+        animation: tickAnim 1.5s ease-in-out;
+      }
+
+      h1 {
+        font-size: 36px;
+        color: #3e2c1c;
+        margin: 20px 0;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 18px;
+        color: #3e2c1c;
+        margin: 10px 0;
+      }
+
+      .highlight-text {
+        font-weight: bold;
+        color: #ff8c00;
+      }
+
+      .back-btn {
+        margin-top: 30px;
+        padding: 12px 30px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #3e2c1c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .back-btn:hover {
+        background-color: #6f4f28;
+      }
+
+      .back-btn:active {
+        background-color: #5a3e26;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes tickAnim {
+        0% {
+          transform: scale(0);
+        }
+        50% {
+          transform: scale(1.3);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsiveness */
+      @media screen and (max-width: 768px) {
+        .confirmation-container {
+          padding: 20px;
+        }
+
+        .tick {
+          font-size: 60px;
+        }
+
+        h1 {
+          font-size: 30px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+
+        .back-btn {
+          font-size: 16px;
+          padding: 10px 25px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .confirmation-container {
+          padding: 15px;
+          max-width: 90%;
+        }
+
+        .tick {
+          font-size: 50px;
+        }
+
+        h1 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 14px;
+        }
+
+        .back-btn {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="confirmation-container">
+      <div class="tick">✔</div>
+      <h1>Payment Successful!</h1>
+      <p>
+        Your payment was successfully processed. We appreciate your trust in us!
+      </p>
+      <p class="highlight-text">Thank you for your purchase!</p>
+      <p>
+        We look forward to serving you again. Feel free to visit us at any time!
+      </p>
+
+      <button
+        class="back-btn"
+        type="button"
+        onclick="clearStorageAndRedirect()"
+      >
+        Back to Home
+      </button>
+    </div>
+
+    <script>
+      function clearStorageAndRedirect() {
+        localStorage.clear();
+
+        window.location.href = "{% url 'index' %}";
+      }
+    </script>
+  </body>
+</html>

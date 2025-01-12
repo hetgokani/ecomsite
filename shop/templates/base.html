@@ -1,0 +1,331 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choco World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Carter+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="stylesheet" href="{% static 'shop/styles.css' %}" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <img
+          class="logo"
+          src="{% static 'shop/images/choco/mrlogo-removebg-preview.png' %}"
+          alt="Logo"
+        />
+      </div>
+      <div class="hamburger-menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="hamburger-menu close">
+        <div></div>
+      </div>
+
+      {% if user.is_authenticated %}
+      <span
+        style="
+          text-decoration: none;
+          color: white;
+          font-size: 1.5rem;
+
+          text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.7);
+          font-family: 'Poppins', serif;
+          font-style: normal;
+        "
+      >
+        Welcome, {{ user.username }}😊
+      </span>
+      {% endif %}
+      <div class="nav-actions">
+        <form class="search-bar" method="GET">
+          <input
+            type="text"
+            name="item_name"
+            placeholder="Search..."
+            id="searchInput"
+            onclick="window.location.hash = '#store';"
+          />
+
+          <button type="button" class="reset-btn" onclick="resetSearch()">
+            <ion-icon class="refresh-icon" name="close-outline"></ion-icon>
+          </button>
+        </form>
+        <div class="cart-icon">
+          <a href="#cart">
+            <a href="{% url 'checkout' %}">
+              <ion-icon class="cart" name="cart-outline"></ion-icon>
+            </a>
+            <span id="cart1" class="cart-popover">0</span>
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#store">Shop</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <section class="choco-world-content">
+      <div class="hero-container">
+        <div class="main">
+          <img
+            class="main-choco"
+            src="{% static 'shop/images/choco/can.png' %}"
+          />
+        </div>
+        <img
+          class="side1"
+          src="{% static 'shop/images/choco/main1.png' %}"
+          alt=""
+        />
+        <img
+          class="side2"
+          src="{% static 'shop/images/choco/main2.png' %}"
+          alt=""
+        />
+        <img
+          class="side3"
+          src="{% static 'shop/images/choco/white.png' %}"
+          alt=""
+        />
+        <img
+          class="side4"
+          src="{% static 'shop/images/choco/almod.png' %}"
+          alt=""
+        />
+        <img
+          class="side5"
+          src="{% static 'shop/images/choco/almod2.png' %}"
+          alt=""
+        />
+        <img
+          class="side8"
+          src="{% static 'shop/images/choco/almod2.png' %}"
+          alt=""
+        />
+        <img
+          class="side6"
+          src="{% static 'shop/images/choco/pngtree-imported-fresh-cashew-nuts-png-image_2384028-removebg-preview.png' %}"
+          alt=""
+        />
+        <img
+          class="side7"
+          src="{% static 'shop/images/choco/pngtree-imported-fresh-cashew-nuts-png-image_2384028-removebg-preview.png' %}"
+          alt=""
+        />
+      </div>
+
+      <section id="about" class="desc">
+        <img
+          class="desc-img"
+          src="{% static 'shop/images/choco/flying-cashew-transparent-background_838900-33986-removebg-preview.png' %}"
+          alt=""
+        />
+        <div class="abouttextdiv">
+          <h1 class="abouttext autoShow1">Chocolate Bliss</h1>
+          <p class="aboutdesc autoShow">
+            Welcome to our chocolate haven! We craft irresistible chocolates
+            using the finest ingredients, blending tradition with a touch of
+            modern indulgence. Each piece is a celebration of flavor and
+            artistry, designed to delight your senses. Indulge in the magic of
+            our handcrafted treats and savor moments of pure bliss!
+          </p>
+        </div>
+      </section>
+
+      {% block body %} {% endblock %}
+
+      <footer class="footer">
+        <div class="container">
+          <div class="image-space">
+            <img
+              class="autoShow imgfooter"
+              src="{% static 'shop/images/choco/feastables-crunch-removebg-preview.png' %}"
+              alt="Chocolate Theme"
+            />
+          </div>
+          <div class="column">
+            <h3>About Us</h3>
+            <div class="decorative-line"></div>
+            <p>
+              Discover the finest chocolate crafted with love and the finest
+              ingredients. We bring joy to every bite.
+            </p>
+          </div>
+          <div class="column">
+            <h3>Quick Links</h3>
+            <div class="decorative-line"></div>
+            <p><a href="#">Home</a></p>
+            <p><a href="#store">Shop</a></p>
+            <p><a href="#about">About Us</a></p>
+            <p><a href="#">Contact</a></p>
+          </div>
+          <div class="column">
+            <h3>Follow Us</h3>
+            <div class="decorative-line"></div>
+            <div class="social-icons">
+              <a href="#" aria-label="Facebook"
+                ><ion-icon class="footer-icon" name="logo-facebook"></ion-icon
+              ></a>
+              <a href="#" aria-label="Instagram"
+                ><ion-icon class="footer-icon" name="logo-instagram"></ion-icon
+              ></a>
+              <a href="#" aria-label="Twitter"
+                ><ion-icon class="footer-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2025 Choco World. All rights reserved.
+        </div>
+      </footer>
+    </section>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      if (window.innerWidth >= 800) {
+        var tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".desc",
+            start: "0% 95%",
+            end: "70% 50%",
+            scrub: true,
+          },
+        });
+
+        tl.to(
+          ".main-choco",
+          {
+            top: "100%",
+            left: "-30%",
+          },
+          "choco"
+        );
+        tl.to(
+          ".side1",
+          {
+            top: "140%",
+            left: "80%",
+            rotate: "130deg",
+          },
+          "choco"
+        );
+        tl.to(
+          ".side2",
+          {
+            top: "110%",
+            left: "50%",
+            rotate: "30deg",
+          },
+          "choco"
+        );
+        tl.to(
+          ".side8",
+          {
+            top: "100%",
+            left: "0%",
+            rotate: "360deg",
+          },
+          "choco"
+        );
+        tl.to(
+          ".side4",
+          {
+            top: "180%",
+            left: "60%",
+            rotate: "150deg",
+          },
+          "choco"
+        );
+      } else {
+        console.log("GSAP animations disabled below 800px");
+      }
+
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const closeIcon = document.querySelector(".hamburger-menu.close");
+      const navLinks = document.querySelector(".nav-links");
+      const navItems = document.querySelectorAll(".nav-links li");
+
+      hamburgerMenu.addEventListener("click", () => {
+        navLinks.classList.add("active");
+        closeIcon.classList.add("active");
+        hamburgerMenu.classList.add("active");
+      });
+
+      closeIcon.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        closeIcon.classList.remove("active");
+        hamburgerMenu.classList.remove("active");
+      });
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+          closeIcon.classList.remove("active");
+          hamburgerMenu.classList.remove("active");
+        });
+      });
+      function resetSearch() {
+        document.getElementById("searchInput").value = "";
+        const url = window.location.pathname;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>

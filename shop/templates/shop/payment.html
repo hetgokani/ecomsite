@@ -1,0 +1,190 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choco World - Payment</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #1f242d;
+        padding: 25px;
+      }
+
+      .container form {
+        width: 700px;
+        padding: 40px;
+        background: #fff;
+        border-radius: 10px;
+      }
+
+      form .row {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .row .column {
+        flex: 1 1 250px;
+      }
+
+      .column .title {
+        font-size: 20px;
+        color: #333;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .column .input-box {
+        margin: 15px 0;
+      }
+
+      .input-box span {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .input-box input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+
+      .column .flex {
+        display: flex;
+        gap: 15px;
+      }
+
+      .flex .input-box {
+        margin-top: 5px;
+      }
+
+      .input-box img {
+        height: 34px;
+        margin-top: 5px;
+        filter: drop-shadow(0 0 1px #000);
+      }
+
+      form .btn {
+        width: 100%;
+        padding: 12px;
+        background: #8b4513;
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        font-size: 17px;
+        color: #fff;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: 0.5s;
+      }
+
+      form .btn:hover {
+        background: #572604;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <form action="{% url 'paymentdone' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="column">
+            <h3 class="title">Billing Address</h3>
+            <div class="input-box">
+              <span>Full Name :</span>
+              <input type="text" placeholder="Het Gokani" name="full_name" />
+            </div>
+            <div class="input-box">
+              <span>Email :</span>
+              <input type="email" placeholder="het@example.com" name="email" />
+            </div>
+            <div class="input-box">
+              <span>Address :</span>
+              <input
+                type="text"
+                placeholder="Room - Street - Locality"
+                name="address"
+              />
+            </div>
+            <div class="input-box">
+              <span>City :</span>
+              <input type="text" placeholder="Rajkot" name="city" />
+            </div>
+
+            <div class="flex">
+              <div class="input-box">
+                <span>State :</span>
+                <input type="text" placeholder="Gujarat" name="state" />
+              </div>
+              <div class="input-box">
+                <span>Zip Code :</span>
+                <input type="number" placeholder="360001" name="zip_code" />
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <h3 class="title">Payment</h3>
+            <div class="input-box">
+              <span>Cards Accepted :</span>
+              <img
+                src="{% static 'shop/images/choco/imgcards.png' %}"
+                alt="Card Logos"
+              />
+            </div>
+            <div class="input-box">
+              <span>Name On Card :</span>
+              <input
+                type="text"
+                placeholder="Mr. Het Gokani"
+                name="name_on_card"
+              />
+            </div>
+            <div class="input-box">
+              <span>Credit Card Number :</span>
+              <input
+                type="number"
+                placeholder="1111 2222 3333 4444"
+                name="card_number"
+              />
+            </div>
+            <div class="input-box">
+              <span>Exp. Month :</span>
+              <input type="text" placeholder="August" name="exp_month" />
+            </div>
+
+            <div class="flex">
+              <div class="input-box">
+                <span>Exp. Year :</span>
+                <input type="number" placeholder="2025" name="exp_year" />
+              </div>
+              <div class="input-box">
+                <span>CVV :</span>
+                <input type="number" placeholder="009" name="cvv" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn" type="submit">Pay</button>
+      </form>
+    </div>
+  </body>
+</html>
